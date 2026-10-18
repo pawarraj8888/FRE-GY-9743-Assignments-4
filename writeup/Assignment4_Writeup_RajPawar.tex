@@ -25,9 +25,9 @@ so the value is still the present value of $V(T)$, and under perfect collaterali
 \[
 V(t) = \E^{Q}_t\!\Bigl[e^{-\int_t^T r_C(u)\,du}\,V(T)\Bigr].
 \]
-The intuition I find clearest: posting $V(t)$ as collateral is the same as being lent $V(t)$ today against $V(T)$ at maturity, and a loan
-from $t$ to $T$ at $r_C$ is exactly the factor $e^{-\int_t^T r_C}$. The daily collateral calls do not change \emph{when} the payoff is
-realised; they only make sure the money is there if someone defaults.
+The intuition I find clearest: being in the money by $V(t)$ and holding $V(t)$ of the other side's collateral is the same as having been
+lent $V(t)$ today against $V(T)$ at maturity, and a loan from $t$ to $T$ at $r_C$ is exactly the factor $e^{-\int_t^T r_C}$. The daily
+collateral calls do not change \emph{when} the payoff is realised; they only make sure the money is there if someone defaults.
 
 \textbf{On the exchange the daily transfer is a settlement.} At the close the clearing house pays me $F(t_{k+1},T)-F(t_k,T)$ outright, pays no
 interest on it, and re-strikes my contract at the new price so that it is worth exactly zero again. Nothing is ever owed for longer than one
@@ -42,11 +42,12 @@ fully paid before the next day's rate is set. A one-day bet that must have zero 
 is, because the rate multiplies both sides of the equation. The cumulative variation margin over the life is $F(T,T)-F(t,T)=S(T)-F(t,T)$,
 i.e.\ the forward-style payoff received in instalments, which is why no further time value of money appears in the price.
 
-\textbf{Same cash, different ownership.} The exchange does not pay interest on my variation margin because the margin is mine: it is
-realised profit. The OTC counterparty pays interest on the collateral because the collateral is theirs: it secures an unrealised mark. The
-discount factor shows up exactly where interest is paid on the posted amount. The cleared-swap market made this explicit when it moved
-from collateralised-to-market (interest, called price alignment interest, paid on variation margin at $r_C$) to settled-to-market, where
-variation margin is a final settlement and the swap prices like a future.
+\textbf{Same cash, different ownership.} Variation margin on a future is not a deposit: the day's loss is paid to the winner and belongs
+to the winner, so nobody owes interest on it. Collateral under a CSA still belongs to the party that posted it; the party holding it pays
+interest at $r_C$ because it is holding someone else's money against a mark that has not been realised. The discount factor shows up exactly
+where interest is paid on the posted amount. The cleared-swap market illustrates this: when the clearing houses moved variation margin
+from collateralised-to-market to settled-to-market, they kept paying a price alignment amount equal to the old price alignment interest at
+$r_C$, precisely so that the swap keeps its collateralised-swap value; only if that payment were dropped would the contract price like a future.
 
 \textbf{What it changes.} With a horizon-long, random discount factor the OTC forward price is a $T$-forward-measure expectation,
 $F^{\mathrm{fwd}}(t,T)=\E^{T}_t[S(T)]$ (notes, section 2.3), while the futures price is $\E^{Q}_t[S(T)]$; the gap is the convexity
